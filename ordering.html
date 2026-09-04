@@ -1,0 +1,942 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>R573 · Food Ordering</title>
+        <link rel="stylesheet" href="../style.css">
+    </head>
+<body class="inner-page">
+    <header class="inner-header">
+        <nav class="navbar">
+            <a class="brand" href="../index.html">
+                <span class="brand-logo"><img src="../images/Logo.webp" alt="R573 logo" width="30px"></span>
+                <span class="brand-mark">R</span>
+                <span class="brand-number">573</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../menu.html">Menu</a>
+                <a href="../events.html">Events</a>
+            </div>
+            <div class="nav-actions">
+                <a class="nav-book" href="#orderSummary">Cart <b id="cartCount">0</b> · <span id="cartTotalNav">R0.00</span></a>
+                <button class="mobile-toggle" id="mobileToggle" aria-expanded="false">☰</button>
+            </div>
+        </nav>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="../index.html">Home</a><a href="../gallery.html">Gallery</a><a href="../menu.html">Menu</a><a href="../events.html">Events</a><a href="../club.html">R573 Club</a>
+        </div>
+    </header>
+    <main>
+        <section class="page-hero compact"><span class="section-label">R573 / FOOD ORDERING</span><h1>ORDER THE<br><em>GOOD STUFF.</em></h1><p>Build your order, review it at a glance and confirm a collection order in seconds.</p></section>
+        <section class="inner-section food-marketplace">
+            <div class="food-toolbar"><div><span class="section-label">R573 FOOD COUNTER</span><h2>What are you craving?</h2><p>Freshly prepared favourites for collection at the venue.</p></div><label class="search-field food-search"><span class="sr-only">Search food</span><input id="foodSearch" type="search" placeholder="Search food..."></label></div>
+            <div class="food-categories"><button class="filter active" data-food-filter="all">All</button><button class="filter" data-food-filter="grill">Braai & grill</button><button class="filter" data-food-filter="chicken">Chicken</button><button class="filter" data-food-filter="sides">Sides</button><button class="filter" data-food-filter="drinks">Drinks</button></div>
+            <div class="order-layout"><div class="order-grid" id="orderGrid"></div><aside class="order-summary" id="orderSummary">            <div class="cart-heading"><div><span class="section-label">YOUR CART</span><h2>Ready when you are.</h2></div><span class="cart-count-badge" id="cartCountPanel">0</span></div><div id="orderItems"><p>Your cart is empty.</p></div><div class="order-total"><span>Total</span><strong id="cartTotal">R0.00</strong></div><button class="button button-primary" id="checkout">Proceed to checkout <span>→</span></button><p class="form-note">Collection at the R573 Food Counter. Demo payment only.</p></aside></div>
+        </section>
+    </main>
+    <footer class="footer"><div class="footer-brand"><a class="brand" href="../index.html"><span class="brand-logo"><img src="images/Logo.webp" alt="" width="30px"></span><span class="brand-mark">R</span><span class="brand-number">573</span></a><p>More than a car wash.<br>It's the vibe.</p></div><div class="footer-links"><div><span>Explore</span><a href="../index.html">Experience</a><a href="../menu.html">Menu</a><a href="../events.html">Events</a></div><div><span>R573</span><a href="../club.html">R573 Club</a><a href="../booking.html">Book now</a><a href="index.html">Order food</a></div><div><span>Connect</span><a href="#" aria-label="Instagram">Instagram</a><a href="#" aria-label="Facebook">Facebook</a><a href="#" aria-label="Twitter">Twitter</a></div></div><div class="footer-bottom"><span>© 2026 R573. All rights reserved.</span><span>TweeFontein, KwaMhlanga 1022</span></div></footer>
+    <div class="food-modal" id="foodModal" aria-hidden="true"><div class="food-modal-card"><button class="food-modal-close" id="foodModalClose" aria-label="Close">×</button><div id="foodModalContent"></div></div></div>
+    <script src="../pages.js"></script> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>R573 · Food Ordering</title>
+  <style>
+    /* ===== R573 SYSTEM (condensed from root.txt) ===== */
+    :root {
+      --orange: #ff5a1f;
+      --orange-light: #ff7a45;
+      --black: #080808;
+      --dark: #111;
+      --charcoal: #1a1a1a;
+      --muted: #a4a4a4;
+      --white: #f5f3ef;
+      --border: rgba(255,255,255,.12);
+      --ease: cubic-bezier(.2,.7,.2,1);
+      --card-radius: 16px;
+      --image-radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a, button { font: inherit; }
+    a { color: inherit; text-decoration: none; }
+    button { border: 0; background: none; cursor: pointer; color: inherit; }
+    .section-label {
+      color: var(--orange);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+    h1,h2,h3,strong { font-weight: 900; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 22px;
+      border: 1px solid transparent;
+      font-weight: 750;
+      position: relative;
+      overflow: hidden;
+      transition: .2s var(--ease);
+      border-radius: 8px;
+    }
+    .button:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,.1);
+      transform: translateX(-100%);
+      transition: .3s;
+    }
+    .button:hover:after { transform: none; }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary {
+      background: var(--orange);
+      color: #fff;
+    }
+    .button-outline {
+      border-color: rgba(255,255,255,.3);
+      background: rgba(255,255,255,.03);
+    }
+    .inner-page { background: var(--black); min-height: 100vh; }
+    .inner-header {
+      background: #080808;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--border);
+    }
+    .navbar {
+      position: relative;
+      z-index: 10;
+      width: min(1400px, calc(100% - 64px));
+      height: 90px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 900;
+      line-height: 1;
+    }
+    /* ===== JUMPING LOGO (float animation from root) ===== */
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--orange);
+      font-size: 20px;
+      font-weight: 900;
+      color: #fff;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      50% { transform: translateY(-9px); }
+    }
+    .brand-mark { color: var(--orange); font-size: 32px; letter-spacing: -.08em; }
+    .brand-number { font-size: 31px; letter-spacing: -.08em; }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      color: #cfcfcf;
+      font-size: 14px;
+    }
+    .nav-links a { position: relative; transition: .2s; }
+    .nav-links a:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -7px;
+      width: 100%;
+      height: 2px;
+      background: var(--orange);
+      transform: scaleX(0);
+      transition: .3s;
+    }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-links a:hover:after { transform: none; }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .nav-book {
+      background: var(--orange);
+      padding: 12px 18px;
+      font-weight: 700;
+      transition: .3s;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    .nav-book:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(255,90,31,.4);
+    }
+    .mobile-toggle { display: none; font-size: 25px; background: none; border: 0; color: #fff; }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 18px;
+      padding: 25px 32px;
+      background: rgba(0,0,0,.97);
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu.open { display: flex; }
+    .page-hero {
+      padding: 150px max(32px,7vw) 100px;
+      min-height: 430px;
+      background: radial-gradient(circle at 75% 35%, rgba(255,90,31,.18), transparent 30%),
+                  linear-gradient(130deg, #080808, #15100d);
+      border-bottom: 1px solid var(--border);
+    }
+    .page-hero.compact { min-height: 380px; padding-top: 120px; padding-bottom: 75px; }
+    .page-hero h1 {
+      font-size: clamp(60px, 9vw, 110px);
+      line-height: .83;
+      letter-spacing: -.075em;
+      margin: 22px 0;
+    }
+    .page-hero h1 em { font-style: normal; color: var(--orange); }
+    .page-hero p {
+      max-width: 580px;
+      color: #999;
+      font-size: 17px;
+      line-height: 1.8;
+    }
+    .inner-section {
+      padding: 90px max(32px,7vw);
+      max-width: 1500px;
+      margin: auto;
+    }
+    .food-marketplace { max-width: 1400px; margin: auto; }
+    .food-toolbar {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .food-toolbar h2 {
+      font-size: clamp(42px,5vw,72px);
+      line-height: .9;
+      letter-spacing: -.06em;
+      margin: 12px 0;
+    }
+    .food-toolbar p { color: var(--muted); line-height: 1.6; }
+    .search-field input {
+      min-height: 50px;
+      padding: 0 14px;
+      background: var(--charcoal);
+      border: 1px solid var(--border);
+      color: var(--white);
+      width: min(360px, 40vw);
+      outline: none;
+      font-size: 15px;
+      border-radius: 10px;
+    }
+    .search-field input:focus { border-color: var(--orange); outline: 1px solid var(--orange); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); }
+    .food-categories {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 22px;
+    }
+    .filter {
+      border: 1px solid var(--border);
+      padding: 11px 22px;
+      color: #888;
+      background: transparent;
+      transition: .3s;
+      font-weight: 600;
+      border-radius: 30px;
+    }
+    .filter.active, .filter:hover {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: #fff;
+    }
+    .order-layout {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) 350px;
+      gap: 32px;
+    }
+    .order-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 24px;
+      align-content: start;
+    }
+    .order-product {
+      border: 1px solid var(--border);
+      background: var(--charcoal);
+      transition: .3s var(--ease);
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .order-product:hover { transform: translateY(-6px); border-color: var(--orange); box-shadow: 0 12px 30px rgba(255,90,31,.08); }
+    .food-card-image {
+      display: block;
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      background: #222;
+      cursor: pointer;
+      border-radius: var(--image-radius) var(--image-radius) 0 0;
+      margin: 0;
+    }
+    .food-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s var(--ease);
+      display: block;
+    }
+    .food-card-image:hover img { transform: scale(1.06); }
+    .food-card-body {
+      padding: 18px 20px 12px;
+      flex: 1;
+    }
+    .food-card-body h3 { font-size: 21px; margin-bottom: 6px; }
+    .food-card-body p { color: var(--muted); line-height: 1.5; font-size: 14px; min-height: 40px; }
+    .food-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 8px 20px 18px;
+      border-top: 1px solid rgba(255,255,255,.04);
+    }
+    .availability { font-size: 12px; color: #4ade80; }
+    .food-card-footer .button {
+      min-height: 38px;
+      padding: 0 18px;
+      font-size: 13px;
+      border-radius: 30px;
+    }
+    .order-summary {
+      height: max-content;
+      position: sticky;
+      top: 110px;
+      padding: 28px;
+      background: var(--charcoal);
+      border: 1px solid var(--border);
+      border-radius: var(--card-radius);
+    }
+    .cart-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .cart-heading h2 { font-size: 32px; margin: 6px 0 0; line-height: 1; }
+    .cart-count-badge {
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--orange);
+      font-weight: 800;
+    }
+    .order-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .remove-item {
+      color: var(--orange);
+      font-size: 18px;
+      background: none;
+      border: 0;
+      cursor: pointer;
+      padding: 0 4px;
+    }
+    .order-total {
+      display: flex;
+      justify-content: space-between;
+      padding: 22px 0;
+      font-size: 18px;
+      border-top: 1px solid var(--border);
+      margin-top: 8px;
+    }
+    .order-total strong { color: var(--orange); }
+    .form-note { color: #777; font-size: 12px; margin-top: 14px; }
+    .food-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: rgba(0,0,0,.85);
+      backdrop-filter: blur(12px);
+    }
+    .food-modal.open { display: grid; }
+    .food-modal-card {
+      position: relative;
+      width: min(100%, 520px);
+      max-height: 90vh;
+      overflow: auto;
+      padding: 28px;
+      background: var(--charcoal);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      animation: scaleIn .25s var(--ease);
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(.94); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .food-modal-close {
+      position: absolute;
+      right: 16px;
+      top: 10px;
+      font-size: 28px;
+      color: #aaa;
+      z-index: 1;
+      background: none;
+      border: 0;
+    }
+    .food-detail-image {
+      width: calc(100% + 56px);
+      height: 200px;
+      object-fit: cover;
+      margin: -28px -28px 24px;
+      border-radius: 24px 24px 0 0;
+    }
+    .food-modal-card h2 { font-size: 38px; margin: 10px 0; }
+    .food-modal-card p { color: var(--muted); line-height: 1.6; }
+    .food-detail-rating { color: var(--orange); margin: 12px 0 24px; }
+    .food-extras {
+      display: grid;
+      gap: 12px;
+      padding: 18px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .food-extras strong { margin-bottom: 4px; }
+    .food-extras label { display: flex; gap: 10px; color: #ccc; font-size: 14px; align-items: center; }
+    .food-extras label span { margin-left: auto; color: var(--orange); }
+    .detail-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-top: 22px;
+    }
+    .detail-actions .button { flex: 1; border-radius: 30px; }
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      overflow: hidden;
+    }
+    .quantity-control button {
+      width: 38px;
+      height: 42px;
+      font-size: 20px;
+      background: transparent;
+      border: 0;
+      color: #fff;
+      transition: .2s;
+    }
+    .quantity-control button:hover { background: rgba(255,255,255,.05); }
+    .quantity-control strong { min-width: 28px; text-align: center; }
+    .footer {
+      padding: 80px max(32px,5vw) 30px;
+      border-top: 1px solid var(--border);
+      background: var(--black);
+    }
+    .footer-brand p { margin: 25px 0 60px; color: #777; line-height: 1.7; }
+    .footer-links {
+      display: flex;
+      gap: 120px;
+      margin-bottom: 80px;
+      flex-wrap: wrap;
+    }
+    .footer-links div { display: flex; flex-direction: column; gap: 12px; }
+    .footer-links span {
+      color: var(--orange);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .footer-links a { color: #888; font-size: 14px; transition: .2s; }
+    .footer-links a:hover { color: var(--orange); transform: translateX(4px); }
+    .footer-bottom {
+      padding-top: 25px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      color: #555;
+      font-size: 11px;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 1000px) {
+      .nav-links { display: none; }
+      .mobile-toggle { display: block; }
+      .order-layout { grid-template-columns: 1fr; }
+      .order-summary { position: static; }
+      .food-toolbar .search-field input { width: 100%; }
+      .order-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 700px) {
+      .navbar { height: 76px; width: calc(100% - 32px); }
+      .nav-book { padding: 10px 14px; font-size: 13px; }
+      .page-hero { padding-top: 100px; min-height: 350px; }
+      .order-grid { grid-template-columns: 1fr; }
+      .food-card-image { height: 200px; }
+      .detail-actions { flex-direction: column; align-items: stretch; }
+      .quantity-control { justify-content: space-between; }
+      .footer-links { gap: 60px; }
+    }
+    .toast-message {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--charcoal);
+      border: 1px solid var(--orange);
+      padding: 16px 24px;
+      border-radius: 16px;
+      color: #fff;
+      z-index: 99999;
+      box-shadow: 0 10px 40px rgba(0,0,0,.6);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      transform: translateY(120px);
+      opacity: 0;
+      transition: .4s ease;
+    }
+    .toast-message.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .food-card-image {
+      border-radius: var(--image-radius) var(--image-radius) 0 0;
+    }
+    .order-product {
+      border-radius: var(--card-radius);
+    }
+
+     .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body class="inner-page">
+
+  <!-- HEADER -->
+  <header class="inner-header">
+    <nav class="navbar">
+      <a class="brand" href="index.html">
+        <!-- ===== JUMPING LOGO ===== -->
+        <span class="brand-logo"><img src="images\Logo.webp" alt="" width="30px"></span>
+        <span class="brand-mark">R</span><span class="brand-number">573</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="#">Menu</a>
+        <a href="#">Events</a>
+      </div>
+      <div class="nav-actions">
+        <a class="nav-book" href="#orderSummary">Cart <b id="cartCount">0</b> · <span id="cartTotalNav">R0.00</span></a>
+        <button class="mobile-toggle" id="mobileToggle" aria-expanded="false">☰</button>
+      </div>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#">Home</a><a href="#">Gallery</a><a href="#">Menu</a><a href="#">Events</a><a href="#">Club</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="page-hero compact">
+      <span class="section-label">R573 / FOOD ORDERING</span>
+      <h1>ORDER THE<br><em>GOOD STUFF.</em></h1>
+      <p>Build your order, review it at a glance and confirm a collection order in seconds.</p>
+    </section>
+
+    <!-- FOOD MARKETPLACE -->
+    <section class="inner-section food-marketplace">
+      <div class="food-toolbar">
+        <div>
+          <span class="section-label">R573 FOOD COUNTER</span>
+          <h2>What are you craving?</h2>
+          <p>Freshly prepared favourites for collection at the venue.</p>
+        </div>
+        <label class="search-field food-search">
+          <span class="sr-only">Search food</span>
+          <input id="foodSearch" type="search" placeholder="Search food...">
+        </label>
+      </div>
+
+      <div class="food-categories" id="categoryFilters">
+        <button class="filter active" data-food-filter="all">All</button>
+        <button class="filter" data-food-filter="grill">Braai & grill</button>
+        <button class="filter" data-food-filter="chicken">Chicken</button>
+        <button class="filter" data-food-filter="sides">Sides</button>
+        <button class="filter" data-food-filter="drinks">Drinks</button>
+      </div>
+
+      <div class="order-layout">
+        <div class="order-grid" id="orderGrid"></div>
+        <aside class="order-summary" id="orderSummary">
+          <div class="cart-heading">
+            <div>
+              <span class="section-label">YOUR CART</span>
+              <h2>Ready when you are.</h2>
+            </div>
+            <span class="cart-count-badge" id="cartCountPanel">0</span>
+          </div>
+          <div id="orderItems"><p style="color:#888;">Your cart is empty.</p></div>
+          <div class="order-total"><span>Total</span><strong id="cartTotal">R0.00</strong></div>
+          <button class="button button-primary" id="checkoutBtn">Proceed to checkout <span>→</span></button>
+          <p class="form-note">Collection at the R573 Food Counter. Demo payment only.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-brand">
+      <a class="brand" href="index.html">
+        <!-- ===== JUMPING LOGO in footer ===== -->
+        <span class="brand-logo"><img src="images/Logo.webp" alt="" width="30px"></span>
+        <span class="brand-mark">R</span><span class="brand-number">573</span>
+      </a>
+      <p>More than a car wash.<br>It's the vibe.</p>
+    </div>
+    <div class="footer-links">
+      <div><span>Explore</span><a href="#">Experience</a><a href="#">Menu</a><a href="#">Events</a></div>
+      <div><span>R573</span><a href="#">Club</a><a href="#">Book now</a><a href="#">Order food</a></div>
+      <div><span>Connect</span><a href="#" aria-label="Instagram">Instagram</a><a href="#" aria-label="Facebook">Facebook</a><a href="#" aria-label="Twitter">Twitter</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 R573. All rights reserved.</span><span>TweeFontein, KwaMhlanga 1022</span></div>
+  </footer>
+
+  <!-- MODAL -->
+  <div class="food-modal" id="foodModal" aria-hidden="true">
+    <div class="food-modal-card">
+      <button class="food-modal-close" id="foodModalClose" aria-label="Close">×</button>
+      <div id="foodModalContent"></div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast-message">✔ Added to cart</div>
+
+  <script>
+    (function() {
+      // ========== DATA with REAL food images ==========
+      const menuItems = [
+        { id: 1, name: "Boerewors Roll", category: "grill", price: 45, rating: 4.8, description: "Juicy boerewors with caramelised onions.", image: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&h=400&fit=crop" },
+        { id: 2, name: "Grilled Chicken", category: "chicken", price: 65, rating: 4.7, description: "Herb-marinated grilled chicken quarter.", image: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600&h=400&fit=crop" },
+        { id: 3, name: "Spicy Wings", category: "chicken", price: 55, rating: 4.9, description: "Crispy wings with peri-peri glaze.", image: "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=600&h=400&fit=crop" },
+       { id: 4, name: "Pizza Margherita", category: "sides", price: 30, rating: 4.3, description: "Classic Italian pizza with tomato sauce and mozzarella.", image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&h=400&fit=crop" },
+        { id: 5, name: "Grilled Steak", category: "grill", price: 85, rating: 4.9, description: "Aged sirloin, flame-grilled to perfection.", image: "https://images.unsplash.com/photo-1546964124-0cce460f38ef?w=600&h=400&fit=crop" },
+        { id: 6, name: "Craft Beer", category: "drinks", price: 28, rating: 4.4, description: "Local craft lager, ice cold.", image: "https://images.unsplash.com/photo-1608270586620-248524c67de9?w=600&h=400&fit=crop" },
+        { id: 7, name: "Wors & Chips", category: "grill", price: 48, rating: 4.6, description: "Classic boerewors with crispy chips.", image: "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=600&h=400&fit=crop" },
+        { id: 8, name: "Lemonade", category: "drinks", price: 22, rating: 4.2, description: "Freshly squeezed lemonade.", image: "https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=600&h=400&fit=crop" },
+        { id: 9, name: "Chicken Burger", category: "chicken", price: 59, rating: 4.5, description: "Grilled chicken breast with lettuce & mayo.", image: "https://images.unsplash.com/photo-1553979459-d2229ba743c0?w=600&h=400&fit=crop" },
+        { id: 10, name: "Coleslaw", category: "sides", price: 18, rating: 4.0, description: "Creamy coleslaw, fresh crunch.", image: "https://images.unsplash.com/photo-1576502200916-3808e07386a5?w=600&h=400&fit=crop" }
+      ];
+
+      // ========== STATE ==========
+      let cart = [];
+      let currentCategory = 'all';
+      let searchQuery = '';
+      let selectedItemId = null;
+
+      // DOM refs
+      const grid = document.getElementById('orderGrid');
+      const cartItemsDiv = document.getElementById('orderItems');
+      const cartTotalSpan = document.getElementById('cartTotal');
+      const cartTotalNav = document.getElementById('cartTotalNav');
+      const cartCountSpan = document.getElementById('cartCount');
+      const cartCountPanel = document.getElementById('cartCountPanel');
+      const modal = document.getElementById('foodModal');
+      const modalContent = document.getElementById('foodModalContent');
+      const toast = document.getElementById('toast');
+      let toastTimer = null;
+
+      // ========== HELPERS ==========
+      function formatPrice(price) { return `R${price.toFixed(2)}`; }
+
+      function getFilteredItems() {
+        return menuItems.filter(item => {
+          const matchCategory = currentCategory === 'all' || item.category === currentCategory;
+          const matchSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                              item.description.toLowerCase().includes(searchQuery.toLowerCase());
+          return matchCategory && matchSearch;
+        });
+      }
+
+      function updateCartUI() {
+        const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
+        const totalPrice = cart.reduce((sum, i) => sum + i.qty * i.price, 0);
+        cartCountSpan.textContent = totalItems;
+        cartCountPanel.textContent = totalItems;
+        cartTotalNav.textContent = formatPrice(totalPrice);
+        cartTotalSpan.textContent = formatPrice(totalPrice);
+
+        if (cart.length === 0) {
+          cartItemsDiv.innerHTML = '<p style="color:#888;">Your cart is empty.</p>';
+          return;
+        }
+        let html = '';
+        cart.forEach(item => {
+          html += `
+            <div class="order-line">
+              <span><strong>${item.name}</strong> × ${item.qty}</span>
+              <span>${formatPrice(item.price * item.qty)} <button class="remove-item" data-id="${item.id}">✕</button></span>
+            </div>
+          `;
+        });
+        cartItemsDiv.innerHTML = html;
+        document.querySelectorAll('.remove-item').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const id = parseInt(this.dataset.id);
+            removeFromCart(id);
+          });
+        });
+      }
+
+      function addToCart(id) {
+        const item = menuItems.find(i => i.id === id);
+        if (!item) return;
+        const existing = cart.find(i => i.id === id);
+        if (existing) {
+          existing.qty += 1;
+        } else {
+          cart.push({ ...item, qty: 1 });
+        }
+        updateCartUI();
+        showToast(`✔ ${item.name} added`);
+      }
+
+      function removeFromCart(id) {
+        const existing = cart.find(i => i.id === id);
+        if (!existing) return;
+        if (existing.qty > 1) {
+          existing.qty -= 1;
+        } else {
+          cart = cart.filter(i => i.id !== id);
+        }
+        updateCartUI();
+      }
+
+      function showToast(msg) {
+        toast.textContent = msg;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+      }
+
+      // ========== RENDER PRODUCTS ==========
+      function renderProducts() {
+        const items = getFilteredItems();
+        if (items.length === 0) {
+          grid.innerHTML = `<div class="empty-state" style="padding:40px 0; color:var(--muted); grid-column:1/-1; text-align:center;">No items found.</div>`;
+          return;
+        }
+        let html = '';
+        items.forEach(item => {
+          html += `
+            <div class="order-product" data-id="${item.id}">
+              <div class="food-card-image" data-id="${item.id}">
+                <img src="${item.image}" alt="${item.name}" loading="lazy">
+              </div>
+              <div class="food-card-body">
+                <h3>${item.name}</h3>
+                <p>${item.description}</p>
+                <div style="color:var(--orange);font-weight:700;margin-top:6px;">${formatPrice(item.price)}</div>
+              </div>
+              <div class="food-card-footer">
+                <span class="availability">● Available</span>
+                <button class="button button-primary add-to-cart-btn" data-id="${item.id}" style="min-height:36px;padding:0 16px;font-size:13px;">Add</button>
+              </div>
+            </div>
+          `;
+        });
+        grid.innerHTML = html;
+
+        document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const id = parseInt(this.dataset.id);
+            addToCart(id);
+          });
+        });
+        document.querySelectorAll('.food-card-image').forEach(el => {
+          el.addEventListener('click', function() {
+            const id = parseInt(this.dataset.id);
+            openModal(id);
+          });
+        });
+      }
+
+      // ========== MODAL ==========
+      function openModal(id) {
+        const item = menuItems.find(i => i.id === id);
+        if (!item) return;
+        selectedItemId = id;
+        modalContent.innerHTML = `
+          <img class="food-detail-image" src="${item.image}" alt="${item.name}">
+          <h2>${item.name}</h2>
+          <div class="food-detail-rating">★ ${item.rating} · ${item.category}</div>
+          <p>${item.description}</p>
+          <div style="font-size:24px;font-weight:800;color:var(--orange);margin:16px 0;">${formatPrice(item.price)}</div>
+          <div class="food-extras">
+            <strong>Add extras</strong>
+            <label><input type="checkbox" value="extra1"> Extra sauce <span>+R5</span></label>
+            <label><input type="checkbox" value="extra2"> Cheese <span>+R8</span></label>
+          </div>
+          <div class="detail-actions">
+            <div class="quantity-control">
+              <button id="qtyDec">−</button>
+              <strong id="qtyDisplay">1</strong>
+              <button id="qtyInc">+</button>
+            </div>
+            <button class="button button-primary" id="modalAddToCart">Add to cart</button>
+          </div>
+        `;
+        modal.classList.add('open');
+        let qty = 1;
+        const qtyDisplay = document.getElementById('qtyDisplay');
+        document.getElementById('qtyInc').addEventListener('click', () => { qty++; qtyDisplay.textContent = qty; });
+        document.getElementById('qtyDec').addEventListener('click', () => { if (qty>1) { qty--; qtyDisplay.textContent = qty; } });
+        document.getElementById('modalAddToCart').addEventListener('click', function() {
+          const existing = cart.find(i => i.id === item.id);
+          if (existing) {
+            existing.qty += qty;
+          } else {
+            cart.push({ ...item, qty: qty });
+          }
+          updateCartUI();
+          showToast(`✔ ${qty} × ${item.name} added`);
+          modal.classList.remove('open');
+        });
+      }
+
+      // ========== FILTER / SEARCH ==========
+      document.querySelectorAll('.filter').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          currentCategory = this.dataset.foodFilter;
+          renderProducts();
+        });
+      });
+
+      document.getElementById('foodSearch').addEventListener('input', function() {
+        searchQuery = this.value.trim();
+        renderProducts();
+      });
+
+      // ========== CHECKOUT ==========
+      document.getElementById('checkoutBtn').addEventListener('click', function() {
+        if (cart.length === 0) {
+          showToast('Your cart is empty');
+          return;
+        }
+        const total = cart.reduce((sum, i) => sum + i.qty * i.price, 0);
+        showToast(`✅ Order placed! Total: ${formatPrice(total)} (demo)`);
+        cart = [];
+        updateCartUI();
+        renderProducts();
+      });
+
+      // ========== MOBILE TOGGLE ==========
+      document.getElementById('mobileToggle').addEventListener('click', function() {
+        document.getElementById('mobileMenu').classList.toggle('open');
+        this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false');
+      });
+
+      // ========== MODAL CLOSE ==========
+      document.getElementById('foodModalClose').addEventListener('click', function() {
+        modal.classList.remove('open');
+      });
+      modal.addEventListener('click', function(e) {
+        if (e.target === this) modal.classList.remove('open');
+      });
+
+      // ========== QUEUE LOGIC (exactly as provided) ==========
+      document.addEventListener("DOMContentLoaded", () => {
+        const join = document.querySelector("#joinQueueBtn");
+        const position = document.querySelector("#queuePosition");
+        const wait = document.querySelector("#waitTime");
+        const success = document.querySelector("#queueSuccess");
+        let number = null;
+        if (join) join.addEventListener("click", () => {
+          number = `#0${24 + Math.floor(Math.random() * 6)}`;
+          position.textContent = number;
+          wait.textContent = "5–10 min";
+          success.hidden = false;
+          join.textContent = "Queue joined ✓";
+          join.disabled = true;
+        });
+        const check = document.querySelector("#checkPositionBtn");
+        if (check) check.addEventListener("click", () => alert(number ? `You are currently ${number}. Estimated wait: 5–10 minutes.` : "Join the live queue first."));
+        const eventButton = document.querySelector("#eventsBtn");
+        if (eventButton) eventButton.addEventListener("click", () => { window.location.href = "events.html"; });
+        const clubButton = document.querySelector("#clubBtn");
+        if (clubButton) clubButton.addEventListener("click", () => { window.location.href = "club.html"; });
+        document.querySelectorAll(".reveal").forEach(element => {
+          const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+            if (entry.isIntersecting) { entry.target.classList.add("visible", "active"); observer.unobserve(entry.target); }
+          }), { threshold: 0.12 });
+          observer.observe(element);
+        });
+        window.addEventListener("scroll", () => {
+          const navbar = document.querySelector(".navbar");
+          if (navbar) navbar.classList.toggle("scrolled", window.scrollY > 50);
+        });
+      });
+
+      // ========== INIT ==========
+      renderProducts();
+      updateCartUI();
+    })();
+  </script>
+</body>
+</html>

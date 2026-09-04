@@ -1,0 +1,673 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>R573 · Menu</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+<body class="inner-page">
+    <header class="inner-header">
+        <nav class="navbar">
+            <a class="brand" href="index.html">
+                <span class="brand-logo"><img src="images/Logo.webp" alt="" width="30px"></span>
+                <span class="brand-mark">R</span>
+                <span class="brand-number">573</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="gallery.html">Gallery</a>
+                <a class="active" href="menu.html">Menu</a>
+                <a href="events.html">Events</a>
+                <a href="club.html">R573 Club</a>
+            </div>
+            <div class="nav-actions">
+                <a class="nav-book" href="food-ordering/index.html">Order food →</a>
+                <button class="mobile-toggle" id="mobileToggle">☰</button>
+            </div>
+        </nav>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="menu.html">Menu</a>
+            <a href="events.html">Events</a>
+            <a href="club.html">R573 Club</a>
+        </div>
+    </header>
+    <main>
+        <section class="page-hero compact">
+            <span class="section-label">R573 MENU</span>
+            <h1>GOOD FOOD.<br><em>GOOD VIBE.</em></h1>
+            <p>Browse the R573 kitchen menu, then order online for quick collection.</p>
+        </section>
+        <section class="inner-section menu-section">
+            <div class="menu-header">
+                <span class="section-label">FROM THE GRILL</span>
+                <h2>Choose your favourites.</h2>
+                <p>Freshly prepared shisanyama, sides and drinks.</p>
+            </div>
+            <div class="menu-tabs" role="tablist">
+                <button class="menu-tab active" data-tab="Shisanyama" role="tab">Shisanyama</button>
+                <button class="menu-tab" data-tab="Sides" role="tab">Sides</button>
+                <button class="menu-tab" data-tab="Drinks" role="tab">Drinks</button>
+            </div>
+            <div class="menu-grid" id="menuGrid"></div>
+            <div class="menu-order-cta">
+                <div><span class="section-label">READY TO ORDER?</span><h2>Make it yours.</h2><p>Add dishes to your order and confirm collection in a few clicks.</p></div>
+                <a class="button button-primary" href="ordering.html">Open food ordering <span>→</span></a>
+            </div>
+        </section>
+    </main>
+    <footer class="footer"><div class="footer-brand"><a class="brand" href="index.html"><span class="brand-logo"><img src="images/Logo.webp" alt="" width="30px"></span><span class="brand-mark">R</span><span class="brand-number">573</span></a><p>More than a car wash.<br>It's the vibe.</p></div><div class="footer-links"><div><span>Explore</span><a href="index.html">Experience</a><a href="menu.html">Menu</a><a href="events.html">Events</a></div><div><span>R573</span><a href="club.html">R573 Club</a><a href="booking.html">Book now</a><a href="food-ordering/index.html">Order food</a></div><div><span>Connect</span><a href="#" aria-label="Instagram">Instagram</a><a href="#" aria-label="Facebook">Facebook</a><a href="#" aria-label="Twitter">Twitter</a></div></div><div class="footer-bottom"><span>© 2026 R573. All rights reserved.</span><span>TweeFontein, KwaMhlanga 1022</span></div></footer>
+    <script src="pages.js"></script> -->
+
+
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>R573 · Menu</title>
+  <style>
+    /* ============================================================
+       R573 SYSTEM (condensed from root.txt) + menu enhancements
+       ============================================================ */
+    :root {
+      --orange: #ff5a1f;
+      --orange-light: #ff7a45;
+      --black: #080808;
+      --dark: #111;
+      --charcoal: #1a1a1a;
+      --muted: #a4a4a4;
+      --white: #f5f3ef;
+      --border: rgba(255,255,255,.12);
+      --ease: cubic-bezier(.2,.7,.2,1);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a, button { font: inherit; }
+    a { color: inherit; text-decoration: none; }
+    button { border: 0; background: none; cursor: pointer; color: inherit; }
+
+    /* utilities */
+    .section-label {
+      color: var(--orange);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+    h1,h2,h3,strong { font-weight: 900; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; }
+
+    /* buttons */
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 22px;
+      border: 1px solid transparent;
+      font-weight: 750;
+      position: relative;
+      overflow: hidden;
+      transition: .2s var(--ease);
+      border-radius: 8px;
+    }
+    .button:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,.1);
+      transform: translateX(-100%);
+      transition: .3s;
+    }
+    .button:hover:after { transform: none; }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary {
+      background: var(--orange);
+      color: #fff;
+    }
+
+    /* header & nav */
+    .inner-page { background: var(--black); min-height: 100vh; }
+    .inner-header {
+      background: #080808;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--border);
+    }
+    .navbar {
+      position: relative;
+      z-index: 10;
+      width: min(1400px, calc(100% - 64px));
+      height: 90px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 900;
+      line-height: 1;
+    }
+    /* ===== JUMPING LOGO ===== */
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--orange);
+      font-size: 20px;
+      font-weight: 900;
+      color: #fff;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      50% { transform: translateY(-9px); }
+    }
+    .brand-mark { color: var(--orange); font-size: 32px; letter-spacing: -.08em; }
+    .brand-number { font-size: 31px; letter-spacing: -.08em; }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      color: #cfcfcf;
+      font-size: 14px;
+    }
+    .nav-links a { position: relative; transition: .2s; }
+    .nav-links a:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -7px;
+      width: 100%;
+      height: 2px;
+      background: var(--orange);
+      transform: scaleX(0);
+      transition: .3s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--orange); }
+    .nav-links a:hover:after, .nav-links a.active:after { transform: none; }
+    .nav-actions { display: flex; align-items: center; gap: 16px; }
+    .nav-book {
+      background: var(--orange);
+      padding: 12px 18px;
+      font-weight: 700;
+      transition: .3s;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    .nav-book:hover { transform: scale(1.05); box-shadow: 0 4px 20px rgba(255,90,31,.4); }
+    .mobile-toggle { display: none; font-size: 25px; background: none; border: 0; color: #fff; }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 18px;
+      padding: 25px 32px;
+      background: rgba(0,0,0,.97);
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu.open { display: flex; }
+
+    /* page hero */
+    .page-hero {
+      padding: 150px max(32px,7vw) 100px;
+      min-height: 430px;
+      background: radial-gradient(circle at 75% 35%, rgba(255,90,31,.18), transparent 30%),
+                  linear-gradient(130deg, #080808, #15100d);
+      border-bottom: 1px solid var(--border);
+    }
+    .page-hero h1 {
+      font-size: clamp(60px, 9vw, 110px);
+      line-height: .83;
+      letter-spacing: -.075em;
+      margin: 22px 0;
+    }
+    .page-hero h1 em { font-style: normal; color: var(--orange); }
+    .page-hero p {
+      max-width: 580px;
+      color: #999;
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    /* menu section */
+    .menu-section {
+      padding: 60px max(32px,7vw) 90px;
+      max-width: 1400px;
+      margin: auto;
+    }
+    .menu-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .menu-header h2 {
+      font-size: clamp(48px, 6vw, 80px);
+      line-height: .9;
+      letter-spacing: -.065em;
+      margin-top: 12px;
+    }
+    .menu-header p {
+      color: #888;
+      margin-top: 16px;
+    }
+    .menu-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .menu-tab {
+      padding: 12px 28px;
+      border: 1px solid var(--border);
+      color: #888;
+      transition: .3s;
+      font-weight: 600;
+      border-radius: 30px;
+    }
+    .menu-tab:hover, .menu-tab.active {
+      background: var(--orange);
+      color: #fff;
+      border-color: var(--orange);
+    }
+
+    /* menu grid with images */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .menu-item {
+      background: var(--charcoal);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+      display: flex;
+      flex-direction: column;
+    }
+    .menu-item:hover {
+      transform: translateY(-6px);
+      border-color: var(--orange);
+      box-shadow: 0 12px 40px rgba(255,90,31,.12);
+    }
+    .menu-item-image {
+      height: 200px;
+      overflow: hidden;
+      background: #222;
+    }
+    .menu-item-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s var(--ease);
+    }
+    .menu-item:hover .menu-item-image img {
+      transform: scale(1.06);
+    }
+    .menu-item-body {
+      padding: 20px 22px 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .menu-item-body h4 {
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .menu-item-body .description {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 6px 0 10px;
+      flex: 1;
+    }
+    .menu-item-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 10px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+    .menu-item-footer .price {
+      color: var(--orange);
+      font-weight: 800;
+      font-size: 20px;
+    }
+    .menu-item-footer .button {
+      min-height: 38px;
+      padding: 0 18px;
+      font-size: 13px;
+      border-radius: 30px;
+    }
+    .menu-item-footer .button-primary {
+      background: var(--orange);
+      color: #fff;
+    }
+
+    /* order CTA */
+    .menu-order-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      margin-top: 60px;
+      padding: 30px 40px;
+      border: 1px solid var(--border);
+      background: rgba(255,90,31,.06);
+      border-radius: var(--radius);
+      flex-wrap: wrap;
+    }
+    .menu-order-cta h2 {
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1;
+      margin: 10px 0;
+    }
+    .menu-order-cta p { color: var(--muted); line-height: 1.6; }
+
+    /* footer */
+    .footer {
+      padding: 80px max(32px,5vw) 30px;
+      border-top: 1px solid var(--border);
+      background: var(--black);
+    }
+    .footer-brand p { margin: 25px 0 60px; color: #777; line-height: 1.7; }
+    .footer-links {
+      display: flex;
+      gap: 120px;
+      margin-bottom: 80px;
+      flex-wrap: wrap;
+    }
+    .footer-links div { display: flex; flex-direction: column; gap: 12px; }
+    .footer-links span {
+      color: var(--orange);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .footer-links a { color: #888; font-size: 14px; transition: .2s; }
+    .footer-links a:hover { color: var(--orange); transform: translateX(4px); }
+    .footer-bottom {
+      padding-top: 25px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      color: #555;
+      font-size: 11px;
+      flex-wrap: wrap;
+    }
+
+    /* responsive */
+    @media (max-width: 1000px) {
+      .nav-links { display: none; }
+      .mobile-toggle { display: block; }
+    }
+    @media (max-width: 700px) {
+      .navbar { height: 76px; width: calc(100% - 32px); }
+      .page-hero { padding-top: 100px; min-height: 350px; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .menu-order-cta { flex-direction: column; align-items: flex-start; padding: 24px; }
+    }
+
+    /* toast */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--charcoal);
+      border: 1px solid var(--orange);
+      padding: 16px 24px;
+      border-radius: 16px;
+      color: #fff;
+      z-index: 99999;
+      box-shadow: 0 10px 40px rgba(0,0,0,.6);
+      font-weight: 600;
+      transform: translateY(120px);
+      opacity: 0;
+      transition: .4s ease;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+
+    
+    .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body class="inner-page">
+
+  <header class="inner-header">
+    <nav class="navbar">
+      <a class="brand" href="#">
+        <!-- ===== JUMPING LOGO ===== -->
+        <span class="brand-logo"><img src="images/Logo.webp" alt="" width="30px"></span>
+        <span class="brand-mark">R</span><span class="brand-number">573</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a class="active" href="menu.html">Menu</a>
+        <a href="events.html">Events</a>
+        <a href="club.html">Club</a>
+      </div>
+      <div class="nav-actions">
+        <a class="nav-book" href="ordering.html">Order food →</a>
+        <button class="mobile-toggle" id="mobileToggle" aria-expanded="false">☰</button>
+      </div>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#">Home</a><a href="#">Gallery</a><a href="#">Menu</a><a href="#">Events</a><a href="#">Club</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero compact">
+      <span class="section-label">R573 MENU</span>
+      <h1>GOOD FOOD.<br><em>GOOD VIBE.</em></h1>
+      <p>Browse the R573 kitchen menu, then order online for quick collection.</p>
+    </section>
+
+    <section class="inner-section menu-section">
+      <div class="menu-header">
+        <span class="section-label">FROM THE GRILL</span>
+        <h2>Choose your favourites.</h2>
+        <p>Freshly prepared shisanyama, sides and drinks.</p>
+      </div>
+      <div class="menu-tabs" role="tablist">
+        <button class="menu-tab active" data-tab="Shisanyama" role="tab">Shisanyama</button>
+        <button class="menu-tab" data-tab="Sides" role="tab">Sides</button>
+        <button class="menu-tab" data-tab="Drinks" role="tab">Drinks</button>
+      </div>
+      <div class="menu-grid" id="menuGrid"></div>
+      <div class="menu-order-cta">
+        <div>
+          <span class="section-label">READY TO ORDER?</span>
+          <h2>Make it yours.</h2>
+          <p>Add dishes to your order and confirm collection in a few clicks.</p>
+        </div>
+        <a class="button button-primary" href="#">Open food ordering <span>→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand">
+      <a class="brand" href="#">
+        <!-- ===== JUMPING LOGO in footer ===== -->
+        <span class="brand-logo"><img src="images/Logo.webp" alt="" width="30px"></span>
+        <span class="brand-mark">R</span><span class="brand-number">573</span>
+      </a>
+      <p>More than a car wash.<br>It's the vibe.</p>
+    </div>
+    <div class="footer-links">
+      <div><span>Explore</span><a href="#">Experience</a><a href="#">Menu</a><a href="#">Events</a></div>
+      <div><span>R573</span><a href="#">Club</a><a href="#">Book now</a><a href="#">Order food</a></div>
+      <div><span>Connect</span><a href="#" aria-label="Instagram">Instagram</a><a href="#" aria-label="Facebook">Facebook</a><a href="#" aria-label="Twitter">Twitter</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 R573. All rights reserved.</span><span>TweeFontein, KwaMhlanga 1022</span></div>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    (function() {
+      // ========== MENU DATA ==========
+      const menuData = {
+        Shisanyama: [
+          { name: "Boerewors Roll", description: "Juicy boerewors with caramelised onions & sauce.", price: 45, image: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&h=400&fit=crop" },
+          { name: "Grilled Steak", description: "Aged sirloin, flame-grilled to perfection.", price: 85, image: "https://images.unsplash.com/photo-1546964124-0cce460f38ef?w=600&h=400&fit=crop" },
+          { name: "Wors & Chips", description: "Classic boerewors with crispy golden chips.", price: 48, image: "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=600&h=400&fit=crop" },
+          { name: "Spicy Wings", description: "Crispy wings with a spicy peri-peri glaze.", price: 55, image: "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=600&h=400&fit=crop" },
+          { name: "Grilled Chicken", description: "Herb-marinated grilled chicken quarter.", price: 65, image: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600&h=400&fit=crop" },
+          { name: "Chicken Burger", description: "Grilled chicken breast with lettuce & mayo.", price: 59, image: "https://images.unsplash.com/photo-1553979459-d2229ba743c0?w=600&h=400&fit=crop" }
+        ],
+        Sides: [
+          { name: "Pap & Chakalaka", description: "Traditional pap with spicy chakalaka relish.", price: 30, image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&h=400&fit=crop" },
+          { name: "Coleslaw", description: "Creamy coleslaw with a fresh, crunchy bite.", price: 18, image: "https://images.unsplash.com/photo-1576502200916-3808e07386a5?w=600&h=400&fit=crop" },
+          { name: "Chips", description: "Golden crispy chips, salted to perfection.", price: 22, image: "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=600&h=400&fit=crop" },
+          { name: "Mielie Pap", description: "Smooth mielie pap served with a savoury sauce.", price: 25, image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&h=400&fit=crop" }
+        ],
+        Drinks: [
+          { name: "Craft Beer", description: "Local craft lager, served ice cold.", price: 28, image: "https://images.unsplash.com/photo-1608270586620-248524c67de9?w=600&h=400&fit=crop" },
+          { name: "Lemonade", description: "Freshly squeezed lemonade with mint.", price: 22, image: "https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=600&h=400&fit=crop" },
+          { name: "Soft Drink", description: "Choice of cola, sprite or fanta.", price: 15, image: "https://images.unsplash.com/photo-1551030173-122d4e7e8e0c?w=600&h=400&fit=crop" },
+          { name: "Fresh Juice", description: "Seasonal fruit juice, freshly squeezed.", price: 20, image: "https://images.unsplash.com/photo-1506675227-27e38f221a9b?w=600&h=400&fit=crop" }
+        ]
+      };
+
+      // ========== STATE ==========
+      let currentTab = 'Shisanyama';
+
+      // DOM refs
+      const grid = document.getElementById('menuGrid');
+      const tabs = document.querySelectorAll('.menu-tab');
+      const toast = document.getElementById('toast');
+      let toastTimer;
+
+      // ========== HELPERS ==========
+      function formatPrice(p) { return `R${p.toFixed(2)}`; }
+
+      function showToast(msg) {
+        toast.textContent = msg;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+      }
+
+      // ========== RENDER MENU ==========
+      function renderMenu(tab) {
+        const items = menuData[tab] || [];
+        if (items.length === 0) {
+          grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px 0;color:#666;">No items in this category.</div>`;
+          return;
+        }
+        let html = '';
+        items.forEach(item => {
+          html += `
+            <div class="menu-item">
+              <div class="menu-item-image">
+                <img src="${item.image}" alt="${item.name}" loading="lazy">
+              </div>
+              <div class="menu-item-body">
+                <h4>${item.name}</h4>
+                <p class="description">${item.description}</p>
+                <div class="menu-item-footer">
+                  <span class="price">${formatPrice(item.price)}</span>
+                  <button class="button button-primary add-to-cart" data-name="${item.name}" data-price="${item.price}">Add</button>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+        grid.innerHTML = html;
+
+        // attach add-to-cart events
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const name = this.dataset.name;
+            const price = parseFloat(this.dataset.price);
+            showToast(`✔ ${name} added to cart (demo)`);
+          });
+        });
+      }
+
+      // ========== TAB SWITCHING ==========
+      tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          tabs.forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+          currentTab = this.dataset.tab;
+          renderMenu(currentTab);
+        });
+      });
+
+      // ========== MOBILE TOGGLE ==========
+      document.getElementById('mobileToggle').addEventListener('click', function() {
+        document.getElementById('mobileMenu').classList.toggle('open');
+        this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false');
+      });
+
+      // ========== QUEUE LOGIC (exactly as provided) ==========
+      document.addEventListener("DOMContentLoaded", () => {
+        const join = document.querySelector("#joinQueueBtn");
+        const position = document.querySelector("#queuePosition");
+        const wait = document.querySelector("#waitTime");
+        const success = document.querySelector("#queueSuccess");
+        let number = null;
+        if (join) join.addEventListener("click", () => {
+          number = `#0${24 + Math.floor(Math.random() * 6)}`;
+          position.textContent = number;
+          wait.textContent = "5–10 min";
+          success.hidden = false;
+          join.textContent = "Queue joined ✓";
+          join.disabled = true;
+        });
+        const check = document.querySelector("#checkPositionBtn");
+        if (check) check.addEventListener("click", () => alert(number ? `You are currently ${number}. Estimated wait: 5–10 minutes.` : "Join the live queue first."));
+        const eventButton = document.querySelector("#eventsBtn");
+        if (eventButton) eventButton.addEventListener("click", () => { window.location.href = "events.html"; });
+        const clubButton = document.querySelector("#clubBtn");
+        if (clubButton) clubButton.addEventListener("click", () => { window.location.href = "club.html"; });
+        document.querySelectorAll(".reveal").forEach(element => {
+          const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+            if (entry.isIntersecting) { entry.target.classList.add("visible", "active"); observer.unobserve(entry.target); }
+          }), { threshold: 0.12 });
+          observer.observe(element);
+        });
+        window.addEventListener("scroll", () => {
+          const navbar = document.querySelector(".navbar");
+          if (navbar) navbar.classList.toggle("scrolled", window.scrollY > 50);
+        });
+      });
+
+      // ========== INIT ==========
+      renderMenu(currentTab);
+    })();
+  </script>
+</body>
+</html>

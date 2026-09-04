@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>R573 · Book a Wash</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="inner-page">
+    <header class="inner-header">
+        <nav class="navbar">
+            <a class="brand" href="index.html">
+                <span class="brand-logo"><img src="images/Logo.webp" alt="" width="30px"></span>
+                <span class="brand-mark">R</span>
+                <span class="brand-number">573</span>
+            </a><div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="menu.html">Menu</a>
+                <a href="events.html">Events</a>
+                <a href="club.html">R573 Club</a>
+            </div>
+            <div class="nav-actions">
+                <a class="nav-book" href="queue.html">Live Queue →</a>
+                <button class="mobile-toggle" id="mobileToggle">☰</button>
+            </div>
+        </nav>
+        <div class="mobile-menu" id="mobileMenu">
+                        <a href="index.html">Home</a>
+                        <a href="gallery.html">Gallery</a>
+                        <a href="menu.html">Menu</a>
+                        <a href="events.html">Events</a>
+                    </div>
+                </header>
+<main>
+    <section class="page-hero compact">
+        <span class="section-label">CAR WASH</span>
+        <h1>BOOK YOUR<br><em>WASH.</em></h1>
+        <p>Choose a service, select a date and time, then continue to the booking system.</p>
+    </section>
+    <section class="inner-section booking-page">
+        <form id="bookingForm" class="booking-form">
+            <label>Full name
+                <input required id="name" placeholder="Your name">
+            </label>
+            <label>Vehicle type
+                <select id="vehicleType">
+                    <option>Sedan</option><option>Hatchback</option><option>SUV</option><option>Bakkie</option><option>Minibus</option><option>Other</option>
+                </select>
+            </label>
+            <label>Vehicle registration
+                <input required id="vehicle" placeholder="e.g. ABC 123 MP">
+            </label>
+            <div class="form-row">
+                <label>Vehicle model<input required id="vehicleModel" placeholder="e.g. VW Polo"></label>
+                <label>Vehicle colour<input required id="vehicleColour" placeholder="e.g. White"></label>
+            </div>
+            <label>Wash service
+                <select id="service">
+                    <option>Basic Wash · R80</option>
+                    <option>Premium Wash · R150</option>
+                    <option>Full Valet · R300</option>
+                    <option>Interior Clean · R120</option>
+                    <option>Exterior Detail · R180</option>
+                    <option>VIP Wash · R250</option>
+                </select>
+            </label>
+            <div class="form-row">
+                <label>Date
+                    <input required type="date" id="date">
+                </label>
+                <label>Time
+                    <select id="time">
+                        <option>09:00</option>
+                        <option>10:00</option>
+                        <option>11:00</option>
+                        <option>12:00</option>
+                        <option>13:00</option>
+                        <option>14:00</option>
+                        <option>15:00</option>
+                    </select>
+                </label>
+            </div>
+            <button class="button button-primary" type="submit">Continue to QueueMaster →</button>
+            <p class="form-note">Demo front-end. The real booking API can be connected here later.</p>
+        </form>
+        <div class="booking-side">
+            <span class="section-label">WHAT HAPPENS NEXT</span>
+            <h2>Book.<br>Arrive.<br><em>Get Fresh.</em></h2>
+            <p>Your booking will connect to QueueMaster for check-in and live queue tracking.</p>
+        </div>
+    </section>
+</main>
+<footer class="footer">
+    <div class="footer-brand"><a class="brand" href="index.html"><span class="brand-logo"><img src="images/Logo.webp" alt="" width="30px"></span><span class="brand-mark">R</span><span class="brand-number">573</span></a><p>More than a car wash.<br>It's the vibe.</p></div><div class="footer-links"><div><span>Explore</span><a href="index.html">Experience</a><a href="menu.html">Menu</a><a href="events.html">Events</a></div><div><span>R573</span><a href="club.html">R573 Club</a><a href="booking.html">Book now</a><a href="food-ordering/index.html">Order food</a></div><div><span>Connect</span><a href="#" aria-label="Instagram">Instagram</a><a href="#" aria-label="Facebook">Facebook</a><a href="#" aria-label="Twitter">Twitter</a></div></div><div class="footer-bottom">
+        <span>© 2026 R573</span>
+        <span>TweeFontein, KwaMhlanga 1022</span>
+    </div>
+</footer>
+<script src="pages.js"></script>
+</body>
+=-</html>

@@ -1,0 +1,759 @@
+/* /* ============================
+   TICKETS PAGE STYLES
+   ============================ */
+
+/* Page Hero */
+.tickets-hero {
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+    padding: 120px 0 60px;
+    background: radial-gradient(circle at 75% 35%, rgba(255, 90, 31, 0.15), transparent 30%),
+                linear-gradient(130deg, #080808, #15100d);
+    border-bottom: 1px solid var(--border);
+}
+
+.tickets-hero h1 {
+    font-size: clamp(48px, 7vw, 80px);
+    line-height: 0.85;
+    letter-spacing: -0.07em;
+    margin-top: 16px;
+}
+
+.tickets-hero h1 em {
+    color: var(--orange);
+    font-style: normal;
+}
+
+.tickets-hero p {
+    max-width: 520px;
+    color: #999;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-top: 16px;
+}
+
+/* Filter Bar */
+.filter-section {
+    padding: 20px 0;
+    background: var(--dark);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 85px;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.navbar.scrolled ~ .filter-section {
+    top: 70px;
+}
+
+.filter-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter {
+    padding: 10px 22px;
+    border: 1px solid var(--border);
+    color: #888;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    background: transparent;
+    cursor: pointer;
+}
+
+.filter:hover {
+    border-color: var(--orange);
+    color: white;
+}
+
+.filter.active {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: white;
+}
+
+/* Events Grid */
+.tickets-section {
+    padding: 60px 0 100px;
+    background: var(--black);
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+}
+
+/* Event Card */
+.event-card {
+    background: var(--charcoal);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.event-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--orange);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.event-card-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.event-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.event-card:hover .event-card-image img {
+    transform: scale(1.05);
+}
+
+.event-card-image .event-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    padding: 6px 14px;
+    background: var(--orange);
+    color: white;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 30px;
+}
+
+.event-card-image .event-price-tag {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.event-card-image .event-price-tag strong {
+    color: var(--orange);
+    font-size: 18px;
+}
+
+.event-card-image .event-price-tag small {
+    color: #888;
+    font-size: 10px;
+}
+
+.event-card-body {
+    padding: 20px 24px 24px;
+}
+
+.event-card-body .event-category {
+    color: var(--orange);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.event-card-body h3 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    letter-spacing: -0.04em;
+    margin: 6px 0 8px;
+}
+
+.event-card-body .event-description {
+    color: #888;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.event-card-body .event-meta {
+    display: flex;
+    gap: 20px;
+    font-size: 12px;
+    color: #777;
+}
+
+.event-card-body .event-meta span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.event-card-body .event-meta .dot {
+    width: 6px;
+    height: 6px;
+    background: #4ade80;
+    border-radius: 50%;
+}
+
+/* ============================
+   TICKET MODAL
+   ============================ */
+.ticket-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.ticket-modal.open {
+    display: flex;
+}
+
+.ticket-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.ticket-modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 720px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: var(--charcoal);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px;
+    animation: fadeInScale 0.3s ease forwards;
+}
+
+.ticket-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 28px;
+    color: #888;
+    transition: color 0.3s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.ticket-modal-close:hover {
+    color: white;
+}
+
+.ticket-modal-header {
+    margin-bottom: 30px;
+}
+
+.ticket-modal-header h2 {
+    font-family: var(--font-display);
+    font-size: 32px;
+    letter-spacing: -0.04em;
+    margin-top: 8px;
+}
+
+.event-meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 8px;
+    color: #888;
+    font-size: 14px;
+}
+
+.event-meta span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Ticket Types */
+.ticket-types {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.ticket-type-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.ticket-type-item:hover {
+    border-color: rgba(255, 90, 31, 0.3);
+}
+
+.ticket-type-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.ticket-type-info h4 {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.ticket-type-info p {
+    color: #888;
+    font-size: 13px;
+}
+
+.ticket-type-info .price {
+    color: var(--orange);
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.ticket-type-qty {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ticket-type-qty button {
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: white;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    display: grid;
+    place-items: center;
+    background: transparent;
+    cursor: pointer;
+}
+
+.ticket-type-qty button:hover {
+    border-color: var(--orange);
+    background: var(--orange);
+}
+
+.ticket-type-qty span {
+    font-size: 18px;
+    font-weight: 700;
+    min-width: 30px;
+    text-align: center;
+}
+
+/* Ticket Summary */
+.ticket-summary {
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    color: #aaa;
+    font-size: 14px;
+}
+
+.summary-row.total {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    margin-top: 8px;
+}
+
+.summary-row.total span:last-child {
+    color: var(--orange);
+}
+
+.buy-btn {
+    width: 100%;
+    margin-top: 16px;
+    padding: 16px;
+    font-size: 14px;
+}
+
+/* ============================
+   CHECKOUT MODAL
+   ============================ */
+.checkout-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.checkout-modal.open {
+    display: flex;
+}
+
+.checkout-modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: var(--charcoal);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px;
+    animation: fadeInScale 0.3s ease forwards;
+}
+
+.checkout-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 28px;
+    color: #888;
+    transition: color 0.3s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.checkout-close:hover {
+    color: white;
+}
+
+.checkout-header {
+    margin-bottom: 30px;
+}
+
+.checkout-header h2 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: -0.04em;
+    margin-top: 8px;
+}
+
+.checkout-form .form-group {
+    margin-bottom: 16px;
+}
+
+.checkout-form label {
+    display: block;
+    color: #aaa;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.checkout-form input {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: white;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.checkout-form input:focus {
+    outline: none;
+    border-color: var(--orange);
+}
+
+.checkout-form input::placeholder {
+    color: #555;
+}
+
+.checkout-summary {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.checkout-summary h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.checkout-summary .summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    color: #aaa;
+    font-size: 13px;
+}
+
+.checkout-total {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 12px;
+    margin-top: 8px;
+    border-top: 1px solid var(--border);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.checkout-total span:last-child {
+    color: var(--orange);
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 16px;
+    font-size: 14px;
+}
+
+/* ============================
+   FOOTER STYLES (if missing in main)
+   ============================ */
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    gap: 80px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid var(--border);
+}
+
+.footer-brand p {
+    margin-top: 20px;
+    max-width: 320px;
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.footer-links h4 {
+    color: var(--orange);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    display: block;
+    color: var(--muted);
+    font-size: 13px;
+    padding: 4px 0;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: white;
+    padding-left: 6px;
+}
+
+.footer-bottom {
+    padding-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255, 255, 255, 0.25);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+}
+
+/* ============================
+   ANIMATIONS & ADDITIONAL STYLES
+   ============================ */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.no-events {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 0;
+}
+
+.no-events p:first-child {
+    font-size: 24px;
+    margin-bottom: 12px;
+    color: #555;
+}
+
+.no-events p:last-child {
+    color: #666;
+}
+
+.desktop-nav a.active {
+    color: var(--orange);
+}
+
+.desktop-nav a.active::after {
+    width: 100%;
+}
+
+.toast {
+    position: fixed;
+    z-index: 99999;
+    right: 30px;
+    bottom: 30px;
+    padding: 16px 24px;
+    background: var(--charcoal);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    transform: translateY(120px);
+    opacity: 0;
+    transition: transform 0.5s var(--ease), opacity 0.5s ease;
+}
+
+.toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.toast .icon {
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    background: var(--orange);
+    border-radius: 50%;
+    font-size: 14px;
+    color: white;
+}
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+@media (max-width: 1000px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    .footer-links {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 700px) {
+    .filter-section {
+        top: 76px;
+        padding: 12px 0;
+        overflow-x: auto;
+    }
+
+    .filter-bar {
+        flex-wrap: nowrap;
+        padding: 0 20px;
+    }
+
+    .filter {
+        flex-shrink: 0;
+        padding: 8px 16px;
+        font-size: 11px;
+    }
+
+    .events-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .event-card-image {
+        height: 160px;
+    }
+
+    .ticket-modal-content {
+        padding: 24px;
+        margin: 10px;
+    }
+
+    .ticket-modal-header h2 {
+        font-size: 24px;
+    }
+
+    .event-meta {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .ticket-type-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .ticket-type-qty {
+        justify-content: flex-end;
+    }
+
+    .checkout-modal-content {
+        padding: 24px;
+        margin: 10px;
+    }
+
+    .tickets-hero {
+        min-height: 300px;
+        padding: 100px 0 40px;
+    }
+
+    .tickets-hero h1 {
+        font-size: 36px;
+    }
+
+    .footer-links {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 400px) {
+    .event-card-body h3 {
+        font-size: 20px;
+    }
+
+    .ticket-type-qty button {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+
+    .ticket-type-qty span {
+        font-size: 16px;
+        min-width: 24px;
+    }
+}

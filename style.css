@@ -4891,8 +4891,9 @@ strong {
   }
 
   .location-stats {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+    /* grid-template-columns: repeat(3, 1fr);
+    gap: 8px; */
+    display: none !important;
   }
 
   .stat-item {
@@ -4927,5 +4928,249 @@ strong {
     .nav-links::after {
       left: 30px;
     }
+  }
+}
+
+
+
+
+@media (max-width: 700px) {
+
+  /* ===== NAVBAR ===== */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 76px;
+    padding: 0 20px;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* ===== BRAND / LOGO IN NAVBAR (Hide text) ===== */
+  .navbar .brand {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 900;
+    line-height: 1;
+    margin-left: -8px;
+  }
+
+  .navbar .brand-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--orange);
+    font-size: 18px;
+    font-weight: 900;
+    color: #fff;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .navbar .brand-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  /* Hide the R and 573 text in NAVBAR only */
+  .navbar .brand-mark {
+    display: none !important;
+  }
+
+  .navbar .brand-number {
+    display: none !important;
+  }
+
+  /* ===== BRAND / LOGO IN FOOTER (Keep text visible) ===== */
+  .footer .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 900;
+    line-height: 1;
+    margin-left: 0;
+  }
+
+  .footer .brand-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--orange);
+    font-size: 20px;
+    font-weight: 900;
+    color: #fff;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .footer .brand-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  /* Show the R and 573 text in FOOTER */
+  .footer .brand-mark {
+    display: inline !important;
+    color: var(--orange);
+    font-size: 32px;
+    letter-spacing: -0.08em;
+  }
+
+  .footer .brand-number {
+    display: inline !important;
+    font-size: 31px;
+    letter-spacing: -0.08em;
+    color: #fff;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 700px) {
+
+  /* ... (your existing mobile styles) ... */
+
+  /* ===== LOCATION SECTION - SIDE SPACES LIKE BOOK A WASH ===== */
+  .location-section .container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .location-grid {
+    grid-template-columns: 1fr;
+    gap: 20px !important;
+  }
+
+  /* ===== LOCATION MAP WRAPPER ===== */
+  .location-map-wrapper {
+    min-height: 200px !important;
+    border-radius: 12px !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  .location-map {
+    min-height: 200px !important;
+  }
+
+  .location-map iframe {
+    min-height: 200px !important;
+  }
+
+  /* ===== GET DIRECTIONS BUTTON ===== */
+  .map-overlay-buttons {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    margin-top: 10px !important;
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .map-direction-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 8px 16px !important;
+    font-size: 11px !important;
+    border-radius: 30px !important;
+    min-height: 36px !important;
+  }
+
+  /* ===== LOCATION CARDS - SIDE SPACES LIKE BOOK A WASH ===== */
+  .location-card {
+    padding: 16px 16px !important;
+    border-radius: 12px !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  .location-card-header {
+    margin-bottom: 12px !important;
+    gap: 10px !important;
+  }
+
+  .location-card-header h3 {
+    font-size: 16px !important;
+  }
+
+  .location-icon {
+    font-size: 22px !important;
+  }
+
+  .location-details {
+    gap: 10px !important;
+    margin-bottom: 14px !important;
+  }
+
+  .location-detail {
+    gap: 10px !important;
+  }
+
+  .detail-icon {
+    font-size: 14px !important;
+    width: 20px !important;
+  }
+
+  .location-detail strong {
+    font-size: 10px !important;
+    margin-bottom: 1px !important;
+  }
+
+  .location-detail p {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+  }
+
+  .location-detail p:last-child {
+    font-size: 11px !important;
+  }
+
+  .location-actions {
+    gap: 8px !important;
+    margin-top: 2px !important;
+  }
+
+  .location-actions .btn {
+    padding: 8px 16px !important;
+    font-size: 12px !important;
+    min-height: 36px !important;
+  }
+
+  /* ===== HIDE LOCATION STATS ON MOBILE ===== */
+  .location-stats {
+    display: none !important;
   }
 }

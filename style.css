@@ -4284,3 +4284,648 @@ strong {
         width: 100%;
     }
 }
+
+
+
+
+
+
+/* ============================================================
+   RESPONSIVE - 1000px
+============================================================ */
+
+@media (max-width: 1000px) {
+  .nav-links {
+    display: none;
+  }
+
+  .mobile-toggle {
+    display: block;
+  }
+
+  .mobile-menu {
+    position: absolute;
+    z-index: 20;
+    top: 90px;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .97);
+    border-bottom: 1px solid var(--border);
+    padding: 25px 32px;
+    display: none;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .mobile-menu.open {
+    display: flex;
+  }
+
+  .mobile-menu a:hover {
+    color: var(--orange);
+  }
+
+  .experience-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .services-section,
+  .club-section,
+  .queue-container {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .club-card {
+    margin-left: 0;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .events-section {
+    grid-template-columns: 1fr;
+  }
+
+  .queue-container {
+    padding: 40px;
+  }
+}
+
+
+/* ============================================================
+   RESPONSIVE - 700px (MOBILE)
+============================================================ */
+
+@media (max-width: 700px) {
+
+  /* ===== NAVBAR ===== */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 76px;
+    padding: 0 20px;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* ===== BRAND / LOGO ===== */
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 900;
+    line-height: 1;
+    margin-left: -8px;
+    /* Shift logo left */
+  }
+
+  .brand-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--orange);
+    font-size: 18px;
+    font-weight: 900;
+    color: #fff;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .brand-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .brand-mark {
+    display: none;
+    /* Hide the R letter */
+  }
+
+  .brand-number {
+    display: none;
+    /* Hide the 573 number */
+  }
+
+  /* ===== HAMBURGER - Right Corner ===== */
+  .mobile-toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    cursor: pointer;
+    position: relative;
+    z-index: 1002;
+    transition: all 0.3s ease;
+    margin-right: -4px;
+    /* Shift hamburger right */
+  }
+
+  .mobile-toggle:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .mobile-toggle span {
+    width: 19px;
+    height: 2px;
+    background: #fff;
+    border-radius: 10px;
+    transition: transform 0.35s ease, opacity 0.25s ease;
+  }
+
+  .mobile-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .mobile-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* ===== MOBILE NAV PANEL - Hidden until clicked ===== */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(86%, 390px);
+    height: 100vh;
+    background: linear-gradient(135deg, rgba(18, 18, 18, 0.98), rgba(7, 7, 7, 0.99));
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    padding: 90px 45px 50px;
+    gap: 0;
+    z-index: 1001;
+    transform: translateX(100%);
+    transition: transform 0.65s cubic-bezier(0.77, 0, 0.175, 1);
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+  }
+
+  .nav-links.active {
+    transform: translateX(0);
+  }
+
+  /* Decorative glow */
+  .nav-links::before {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    top: -100px;
+    right: -120px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 50%;
+    filter: blur(5px);
+    pointer-events: none;
+  }
+
+  .nav-links::after {
+    content: "";
+    display: none;
+  }
+
+  /* Nav links styling */
+  .nav-links a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 16px 0;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 25px;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    opacity: 0;
+    transform: translateX(35px);
+    transition: color 0.3s ease, transform 0.45s ease, opacity 0.45s ease;
+  }
+
+  .nav-links.active a {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .nav-links.active a:nth-child(1) {
+    transition-delay: 0.08s;
+  }
+  .nav-links.active a:nth-child(2) {
+    transition-delay: 0.13s;
+  }
+  .nav-links.active a:nth-child(3) {
+    transition-delay: 0.18s;
+  }
+  .nav-links.active a:nth-child(4) {
+    transition-delay: 0.23s;
+  }
+  .nav-links.active a:nth-child(5) {
+    transition-delay: 0.28s;
+  }
+  .nav-links.active a:nth-child(6) {
+    transition-delay: 0.33s;
+  }
+  .nav-links.active a:nth-child(7) {
+    transition-delay: 0.38s;
+  }
+
+  .nav-links a:hover {
+    color: #fff;
+    transform: translateX(8px);
+  }
+
+  .nav-links a::after {
+    content: "→";
+    position: absolute;
+    right: 5px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .nav-links a:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* ===== OVERLAY ===== */
+  body.menu-open::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    z-index: 1000;
+    animation: overlayFade 0.4s ease;
+  }
+
+  @keyframes overlayFade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  /* ===== HIDE EXPLORE R573 BUTTON ON MOBILE ===== */
+  .nav-actions .button-primary {
+    display: none !important;
+  }
+
+  .nav-actions {
+    gap: 8px;
+  }
+
+  /* ===== HERO CONTENT ===== */
+  .hero-content {
+    padding-top: 110px;
+    width: calc(100% - 32px);
+    min-height: calc(100svh - 76px);
+    padding: 80px 0;
+  }
+
+  /* ===== HERO EYEBROW - Add top space ===== */
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    margin-top: 30px;
+    /* Added top space */
+    margin-bottom: 26px;
+    animation: fadeUp 0.8s forwards;
+  }
+
+  .hero-eyebrow span {
+    width: 32px;
+    height: 1px;
+    background: var(--orange);
+  }
+
+  .hero h1 {
+    font-size: clamp(54px, 15vw, 86px);
+  }
+
+  .hero-description {
+    font-size: 15px;
+  }
+
+  .hero-meta {
+    margin-top: 55px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hero-scroll {
+    display: none;
+  }
+
+  /* ===== SECTIONS ===== */
+  .section,
+  .section-dark {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+
+  .section-heading {
+    align-items: start;
+    flex-direction: column;
+    margin-bottom: 40px;
+  }
+
+  .section-heading h2,
+  .services-intro h2,
+  .queue-content h2,
+  .club-copy h2,
+  .menu-header h2 {
+    font-size: clamp(48px, 14vw, 70px);
+  }
+
+  /* ===== EXPERIENCE GRID ===== */
+  .experience-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-card {
+    min-height: 300px;
+  }
+
+  /* ===== SERVICES ===== */
+  .services-section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .service-row {
+    grid-template-columns: 35px 46px 1fr;
+    gap: 12px;
+    padding: 20px 0;
+  }
+
+  .service-arrow {
+    display: none;
+  }
+
+  .service-information strong {
+    font-size: 19px;
+  }
+
+  .service-information small {
+    font-size: 12px;
+  }
+
+  /* ===== GALLERY ===== */
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-item {
+    height: 220px;
+  }
+
+  /* ===== EVENTS ===== */
+  .events-section {
+    grid-template-columns: 1fr;
+  }
+
+  .event-content {
+    padding: 90px 32px;
+  }
+
+  .event-visual {
+    min-height: 400px;
+  }
+
+  /* ===== QUEUE ===== */
+  .queue-container {
+    padding: 24px;
+    gap: 40px;
+  }
+
+  .queue-status {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .queue-status strong {
+    font-size: 22px;
+  }
+
+  /* ===== CLUB ===== */
+  .club-card {
+    width: 100%;
+    padding: 22px;
+  }
+
+  .club-card-middle strong {
+    font-size: 25px;
+  }
+
+  /* ===== R573 REWARD CARD - EXACTLY AS ORIGINAL ===== */
+  .queue-visual {
+    min-height: 350px;
+    position: relative;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 40%, rgba(255, 90, 31, 0.2), transparent 30%), linear-gradient(145deg, #1a1a1a, #080808);
+  }
+
+  .queue-visual:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(255, 255, 255, 0.025) 31px);
+  }
+
+  .queue-visual-content {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .queue-visual-content span {
+    color: var(--orange);
+    font-weight: 900;
+    font-size: 18px;
+    letter-spacing: -0.06em;
+  }
+
+  .queue-visual-content strong {
+    font-size: clamp(28px, 6vw, 42px);
+    line-height: 0.88;
+    letter-spacing: -0.06em;
+    margin-top: 12px;
+  }
+
+  .queue-visual-content small {
+    color: #666;
+    letter-spacing: 0.15em;
+    margin-top: 14px;
+    font-size: 11px;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer-links {
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* ===== MENU ===== */
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-tabs {
+    gap: 8px;
+  }
+
+  .menu-tab {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  /* ===== LOCATION SECTION ===== */
+  .location-section {
+    padding: 80px 0;
+  }
+
+  .location-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .location-map-wrapper {
+    min-height: 280px;
+    position: relative;
+  }
+
+  .location-map {
+    min-height: 280px;
+  }
+
+  .location-map iframe {
+    min-height: 280px;
+  }
+
+  /* ===== GET DIRECTIONS BUTTON - BELOW MAP & SMALLER ===== */
+  .map-overlay-buttons {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    margin-top: 12px;
+    width: 100%;
+  }
+
+  .map-direction-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 20px;
+    font-size: 11px;
+    border-radius: 30px;
+    min-height: 40px;
+  }
+
+  .location-card {
+    padding: 24px;
+  }
+
+  .location-card-header h3 {
+    font-size: 18px;
+  }
+
+  .location-details {
+    gap: 16px;
+  }
+
+  .location-actions {
+    flex-direction: column;
+  }
+
+  .location-actions .btn {
+    width: 100%;
+  }
+
+  .location-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .stat-item {
+    padding: 14px 10px;
+  }
+
+  .stat-number {
+    font-size: 20px;
+  }
+
+  .stat-label {
+    font-size: 9px;
+  }
+
+  .location-map-wrapper {
+    border-radius: 12px;
+  }
+
+  /* ===== SMALLER PHONES ===== */
+  @media (max-width: 480px) {
+    .nav-links {
+      width: 88%;
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+    .nav-links a {
+      font-size: 22px;
+      padding: 14px 0;
+    }
+
+    .nav-links::after {
+      left: 30px;
+    }
+  }
+}

@@ -803,3 +803,158 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+
+
+
+
+/* =========================================================
+   R573 MENU SLIDER
+========================================================= */
+
+const menuSlider = document.getElementById("menuSlider");
+const menuPrev = document.getElementById("menuPrev");
+const menuNext = document.getElementById("menuNext");
+
+
+if (menuSlider && menuPrev && menuNext) {
+
+    menuNext.addEventListener("click", () => {
+
+        menuSlider.scrollBy({
+            left: 380,
+            behavior: "smooth"
+        });
+
+    });
+
+
+    menuPrev.addEventListener("click", () => {
+
+        menuSlider.scrollBy({
+            left: -380,
+            behavior: "smooth"
+        });
+
+    });
+
+}
+
+
+/* =========================================================
+   MENU CATEGORY FILTERING
+========================================================= */
+
+const menuTabs = document.querySelectorAll(".r573-menu-tab");
+const foodCards = document.querySelectorAll(".r573-food-card");
+
+
+menuTabs.forEach(tab => {
+
+    tab.addEventListener("click", () => {
+
+        // Remove active state
+        menuTabs.forEach(item => {
+            item.classList.remove("active");
+        });
+
+
+        // Add active state
+        tab.classList.add("active");
+
+
+        const category = tab.dataset.category;
+
+
+        foodCards.forEach(card => {
+
+            if (
+                category === "all" ||
+                card.dataset.category === category
+            ) {
+
+                card.style.display = "block";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+
+        // Return slider to beginning
+        menuSlider.scrollTo({
+            left: 0,
+            behavior: "smooth"
+        });
+
+    });
+
+});
+
+
+/* =========================================================
+   ADD TO ORDER FEEDBACK
+========================================================= */
+
+const addButtons = document.querySelectorAll(".food-add-btn");
+
+
+addButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const originalText = button.innerHTML;
+
+
+        button.innerHTML = `
+            <span>✓</span>
+            Added
+        `;
+
+
+        button.classList.add("added");
+
+
+        setTimeout(() => {
+
+            button.innerHTML = originalText;
+
+            button.classList.remove("added");
+
+        }, 1500);
+
+    });
+
+});
+
+
+/* =========================================================
+   FAVOURITE BUTTON
+========================================================= */
+
+const favouriteButtons =
+    document.querySelectorAll(".food-favourite");
+
+
+favouriteButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        button.classList.toggle("active");
+
+
+        if (button.classList.contains("active")) {
+
+            button.innerHTML = "♥";
+
+        } else {
+
+            button.innerHTML = "♡";
+
+        }
+
+    });
+
+});

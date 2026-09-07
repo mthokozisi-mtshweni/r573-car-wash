@@ -9,6 +9,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="android-chrome-512x512.png">
   <link rel="icon" type="image/png" sizes="16x16" href="android-chrome-512x512.png">
   <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <title>R573 · Car Wash & Shisanyama</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -624,26 +625,26 @@
     </section> -->
    <!-- ===== MENU SECTION ===== -->
 <!-- ===== MENU SECTION - HTML ===== -->
-<section class="menu-section" id="menu">
+<!-- <section class="menu-section" id="menu">
     <div class="menu-container">
-        <!-- HEADER -->
+        
         <div class="menu-header animate-fade-up">
             <span class="section-label">R573 KITCHEN</span>
             <h2>Explore Our <span class="shimmer-text">Menu</span></h2>
             <p>Authentic South African flavours, crafted with passion and served with a smile.</p>
         </div>
 
-        <!-- TABS -->
+       
         <div class="menu-tabs animate-fade-up delay-1" id="menuTabs">
             <button class="menu-tab active" data-tab="Shisanyama">Shisanyama</button>
             <button class="menu-tab" data-tab="Sides">Sides</button>
             <button class="menu-tab" data-tab="Drinks">Drinks</button>
         </div>
 
-        <!-- GRID -->
+        
         <div class="menu-grid" id="menuGrid"></div>
 
-        <!-- CTA -->
+       
         <div class="menu-order-cta animate-fade-up delay-2">
             <div>
                 <span class="section-label">READY TO ORDER?</span>
@@ -656,7 +657,10 @@
             </a>
         </div>
     </div>
-</section>
+</section> -->
+
+
+
     <!-- <section class="menu-section section-dark" id="menu">
       <div class="menu-container">
 
@@ -680,10 +684,499 @@
             <span>View Full Menu & Order</span>
             <span class="menu-arrow">↓</span>
           </a>
-        </div> -->
+        </div> 
 
       </div>
-    </section>
+    </section>-->
+
+
+    <!-- =========================================================
+     R573 FOOD MENU SECTION
+========================================================= -->
+<section class="r573-menu-section" id="menu">
+
+    <div class="r573-menu-container">
+
+        <!-- =====================================================
+             SECTION HEADER
+        ====================================================== -->
+        <div class="r573-menu-header animate-fade-up">
+
+            <div class="menu-heading-content">
+                <span class="section-label">
+                    R573 SHISANYAMA
+                </span>
+
+                <h2>
+                    Something Delicious
+                    <span class="shimmer-text">Awaits</span>
+                </h2>
+
+                <p>
+                    From flame-grilled shisanyama to delicious sides and
+                    refreshing drinks — choose what you're craving and enjoy
+                    the R573 experience.
+                </p>
+            </div>
+
+            <a href="ordering.html" class="menu-view-all">
+                View Full Menu
+                <span>→</span>
+            </a>
+
+        </div>
+
+
+        <!-- =====================================================
+             CATEGORY TABS
+        ====================================================== -->
+        <div class="r573-menu-tabs-wrapper animate-fade-up delay-1">
+
+            <div class="r573-menu-tabs" id="menuTabs">
+
+                <button class="r573-menu-tab active" data-category="all">
+                    All
+                </button>
+
+                <button class="r573-menu-tab" data-category="shisanyama">
+                    Shisanyama
+                </button>
+
+                <button class="r573-menu-tab" data-category="meals">
+                    Meals
+                </button>
+
+                <button class="r573-menu-tab" data-category="sides">
+                    Sides
+                </button>
+
+                <button class="r573-menu-tab" data-category="drinks">
+                    Drinks
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             SLIDER CONTROLS
+        ====================================================== -->
+        <div class="menu-slider-header">
+
+            <div>
+                <span class="menu-small-label">
+                    POPULAR RIGHT NOW
+                </span>
+
+                <h3>Customer favourites</h3>
+            </div>
+
+
+            <div class="menu-slider-controls">
+
+                <button
+                    class="menu-slider-btn"
+                    id="menuPrev"
+                    aria-label="Previous menu items">
+
+                    ←
+
+                </button>
+
+
+                <button
+                    class="menu-slider-btn"
+                    id="menuNext"
+                    aria-label="Next menu items">
+
+                    →
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             SLIDING MENU
+        ====================================================== -->
+        <div class="r573-menu-slider-wrapper">
+
+            <div
+                class="r573-menu-slider"
+                id="menuSlider">
+
+
+                <!-- ITEM 1 -->
+                <article class="r573-food-card" data-category="shisanyama">
+
+                    <div class="food-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=80"
+                            alt="Grilled meat platter">
+
+                        <span class="food-badge">
+                            Popular
+                        </span>
+
+
+                        <button
+                            class="food-favourite"
+                            aria-label="Add to favourites">
+
+                            ♡
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="food-content">
+
+                        <div class="food-category">
+                            SHISANYAMA
+                        </div>
+
+                        <h3>R573 Meat Platter</h3>
+
+                        <p>
+                            Flame-grilled wors, chicken, beef and
+                            delicious traditional sides.
+                        </p>
+
+
+                        <div class="food-footer">
+
+                            <div class="food-price">
+                                R129.90
+                            </div>
+
+
+                            <button
+                                class="food-add-btn"
+                                data-item="R573 Meat Platter"
+                                data-price="129.90">
+
+                                <span>+</span>
+                                Add
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- ITEM 2 -->
+                <article class="r573-food-card" data-category="shisanyama">
+
+                    <div class="food-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=80"
+                            alt="Grilled chicken">
+
+                        <span class="food-badge hot">
+                            Best Seller
+                        </span>
+
+
+                        <button
+                            class="food-favourite"
+                            aria-label="Add to favourites">
+
+                            ♡
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="food-content">
+
+                        <div class="food-category">
+                            SHISANYAMA
+                        </div>
+
+                        <h3>Flame Grilled Chicken</h3>
+
+                        <p>
+                            Juicy flame-grilled chicken served with
+                            your favourite side.
+                        </p>
+
+
+                        <div class="food-footer">
+
+                            <div class="food-price">
+                                R89.90
+                            </div>
+
+
+                            <button
+                                class="food-add-btn"
+                                data-item="Flame Grilled Chicken"
+                                data-price="89.90">
+
+                                <span>+</span>
+                                Add
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- ITEM 3 -->
+                <article class="r573-food-card" data-category="meals">
+
+                    <div class="food-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=900&q=80"
+                            alt="Burger meal">
+
+                        <span class="food-badge">
+                            Favourite
+                        </span>
+
+
+                        <button
+                            class="food-favourite"
+                            aria-label="Add to favourites">
+
+                            ♡
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="food-content">
+
+                        <div class="food-category">
+                            MEALS
+                        </div>
+
+                        <h3>R573 Burger Meal</h3>
+
+                        <p>
+                            A juicy beef burger served with crispy
+                            chips and a refreshing drink.
+                        </p>
+
+
+                        <div class="food-footer">
+
+                            <div class="food-price">
+                                R79.90
+                            </div>
+
+
+                            <button
+                                class="food-add-btn"
+                                data-item="R573 Burger Meal"
+                                data-price="79.90">
+
+                                <span>+</span>
+                                Add
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- ITEM 4 -->
+                <article class="r573-food-card" data-category="sides">
+
+                    <div class="food-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=900&q=80"
+                            alt="French fries">
+
+                        <button
+                            class="food-favourite"
+                            aria-label="Add to favourites">
+
+                            ♡
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="food-content">
+
+                        <div class="food-category">
+                            SIDES
+                        </div>
+
+                        <h3>Crispy Chips</h3>
+
+                        <p>
+                            Golden, crispy and perfectly seasoned
+                            chips.
+                        </p>
+
+
+                        <div class="food-footer">
+
+                            <div class="food-price">
+                                R29.90
+                            </div>
+
+
+                            <button
+                                class="food-add-btn"
+                                data-item="Crispy Chips"
+                                data-price="29.90">
+
+                                <span>+</span>
+                                Add
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- ITEM 5 -->
+                <article class="r573-food-card" data-category="drinks">
+
+                    <div class="food-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=900&q=80"
+                            alt="Refreshing drink">
+
+                        <span class="food-badge">
+                            Refreshing
+                        </span>
+
+
+                        <button
+                            class="food-favourite"
+                            aria-label="Add to favourites">
+
+                            ♡
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="food-content">
+
+                        <div class="food-category">
+                            DRINKS
+                        </div>
+
+                        <h3>Ice Cold Refreshers</h3>
+
+                        <p>
+                            Choose from our selection of refreshing
+                            cold drinks.
+                        </p>
+
+
+                        <div class="food-footer">
+
+                            <div class="food-price">
+                                From R20
+                            </div>
+
+
+                            <button
+                                class="food-add-btn"
+                                data-item="Ice Cold Refresher"
+                                data-price="20">
+
+                                <span>+</span>
+                                Add
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             ORDER CTA
+        ====================================================== -->
+        <div class="r573-food-order-banner animate-fade-up delay-2">
+
+
+            <div class="food-order-icon">
+
+                <span>🍖</span>
+
+            </div>
+
+
+            <div class="food-order-content">
+
+                <span class="section-label">
+                    HUNGRY?
+                </span>
+
+                <h2>
+                    Order while we take care of your car.
+                </h2>
+
+                <p>
+                    Place your food order and enjoy delicious
+                    shisanyama while you wait.
+                </p>
+
+            </div>
+
+
+            <a
+                href="ordering.html"
+                class="button button-primary food-order-button">
+
+                Start Ordering
+
+                <span>→</span>
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+</section>
 <!--     
     <section class="queue-section section-dark" id="queue">
       <div class="queue-container reveal">
@@ -753,9 +1246,9 @@
     <!-- ============================================================
      CAR WASH BOOKING & REWARD CARD
      ============================================================ -->
-    <section class="queue-section section-dark" id="queue">
+    <!-- <section class="queue-section section-dark" id="queue">
         <div class="queue-container reveal">
-            <!-- LEFT SIDE - Car Wash Booking -->
+            
             <div class="queue-content">
                 <span class="section-label">🚗 CAR WASH</span>
                 <h2>Book Your <span>Wash.</span></h2>
@@ -783,7 +1276,7 @@
                 <div class="queue-success" id="queueSuccess" hidden>✓ You've booked your wash! You earned <strong>+50 points</strong>!</div>
             </div>
 
-            <!-- RIGHT SIDE - Reward Card (Same design, different text) -->
+           
             <div class="queue-visual">
                 <div class="queue-visual-content">
                     <span>R573</span>
@@ -792,7 +1285,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <section class="events-section" id="events">
       <div class="event-content reveal">
@@ -832,7 +1325,7 @@
     <!-- ============================================================
      LOCATION SECTION — GOOGLE MAPS
      ============================================================ -->
-    <section class="section location-section" id="location">
+    <!-- <section class="section location-section" id="location">
         <div class="container">
             <div class="section-heading reveal">
                 <div class="section-label"><span class="number">09</span> FIND US</div>
@@ -841,10 +1334,10 @@
             </div>
 
             <div class="location-grid reveal">
-                <!-- Map Column -->
+                
                 <div class="location-map-wrapper">
                     <div class="location-map" id="map">
-                        <!-- Google Map will load here -->
+                       
                         <div class="map-loading">
                             <span>Loading map...</span>
                             <div class="map-loader"></div>
@@ -859,7 +1352,7 @@
                     </div>
                 </div>
 
-                <!-- Info Column -->
+                
                 <div class="location-info">
                     <div class="location-card">
                         <div class="location-card-header">
@@ -908,7 +1401,7 @@
                         </div>
                     </div>
 
-                    <!-- Quick Stats -->
+                    
                     <div class="location-stats">
                         <div class="stat-item">
                             <span class="stat-number">5+</span>
@@ -926,7 +1419,124 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
+
+
+    <section class="section location-section" id="location">
+    <div class="container">
+        <div class="section-heading reveal">
+            <div class="section-label">
+                <span class="number">09</span> 
+                <i class="fa-solid fa-location-dot" style="color: #ff5a1f;"></i> FIND US
+            </div>
+            <h2>Come <span class="highlight">Visit</span> Us</h2>
+            <p>We're located in TweeFontein, KwaMhlanga. Come experience the vibe for yourself.</p>
+        </div>
+
+        <div class="location-grid reveal">
+            <!-- Map Column -->
+            <div class="location-map-wrapper">
+                <div class="location-map" id="map">
+                    <div class="map-loading">
+                        <span><i class="fa-solid fa-spinner fa-spin"></i> Loading map...</span>
+                        <div class="map-loader"></div>
+                    </div>
+                </div>
+                <div class="map-overlay-buttons">
+                    <a href="https://www.google.com/maps/dir//-25.3929893,28.8062110" 
+                       target="_blank" 
+                       class="btn btn-primary map-direction-btn">
+                        <i class="fa-solid fa-directions"></i> Get Directions
+                    </a>
+                </div>
+            </div>
+
+            <!-- Info Column -->
+            <div class="location-info">
+                <div class="location-card">
+                    <div class="location-card-header">
+                        <span class="location-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </span>
+                        <h3>R573 Car Wash &amp; Shisanyama</h3>
+                    </div>
+                    
+                    <div class="location-details">
+                        <div class="location-detail">
+                            <span class="detail-icon">
+                                <i class="fa-solid fa-map-pin"></i>
+                            </span>
+                            <div>
+                                <strong>Address</strong>
+                                <p>TweeFontein, KwaMhlanga 1022</p>
+                                <p>South Africa</p>
+                            </div>
+                        </div>
+                        
+                        <div class="location-detail">
+                            <span class="detail-icon">
+                                <i class="fa-solid fa-phone"></i>
+                            </span>
+                            <div>
+                                <strong>Contact</strong>
+                                <p>+27 12 345 6789</p>
+                                <p>info@r573.co.za</p>
+                            </div>
+                        </div>
+                        
+                        <div class="location-detail">
+                            <span class="detail-icon">
+                                <i class="fa-solid fa-clock"></i>
+                            </span>
+                            <div>
+                                <strong>Opening Hours</strong>
+                                <p>Monday – Sunday: 08:00 – 22:00</p>
+                                <p>Events: Until late</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="location-actions">
+                        <a href="https://www.google.com/maps/dir//-25.3929893,28.8062110" 
+                           target="_blank" 
+                           class="btn btn-primary">
+                            <i class="fa-solid fa-directions"></i> Get Directions
+                            <span class="btn-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                        </a>
+                        <a href="tel:+27123456789" class="btn btn-outline">
+                            <i class="fa-solid fa-phone"></i> Call Us
+                            <span class="btn-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="location-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">
+                            <i class="fa-solid fa-calendar-check"></i> Years of Service
+                        </span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">10k+</span>
+                        <span class="stat-label">
+                            <i class="fa-solid fa-users"></i> Happy Customers
+                        </span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">
+                            <i class="fa-solid fa-trophy"></i>
+                        </span>
+                        <span class="stat-label">
+                            <i class="fa-solid fa-star"></i> Award Winning
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
   </main>
 
   <footer class="footer">
